@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>iris's web art</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#000000;--fg:#ffffff;--muted:#6b6b6b}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,'Roboto Mono',monospace;-webkit-font-smoothing:antialiased;display:flex;align-items:flex-start;justify-content:center;padding:48px}
+    .wrap{max-width:880px;width:100%}
+    header{display:flex;flex-direction:row;align-items:baseline;gap:12px;margin-bottom:28px}
+    h1{font-size:18px;font-weight:600;margin:0}
+    .lead{margin:0;color:var(--muted);font-size:13px}
+    ol.gallery{list-style:none;padding:0;margin:0;border-top:1px solid #ffffff}
+    ol.gallery li{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid #eee}
+    .meta{display:flex;flex-direction:column}
+    .title{font-size:15px;font-weight:600;color:var(--fg);text-decoration:none}
+    .sub{font-size:12px;color:var(--muted);margin-top:6px}
+    a.view{background:transparent;border:0;color:var(--fg);text-decoration:none;font-size:13px;padding:6px 8px;border-radius:6px}
+    a.view:hover{text-decoration:underline}
+    @media (max-width:480px){body{padding:20px}.wrap{max-width:680px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>iris's web art</h1>
+      <p class="lead">it's diy, baby!</p>
+    </header>
+    <main>
+      <ol class="gallery" id="list"></ol>
+    </main>
+  </div>
+  <script>
+    const ARTWORKS = [
+      {title: 'always exist', url: 'https://iristhepianist.github.io/Iris-Web-Art-1/', date: 'Day 1'}
+    ];
+    const list = document.getElementById('list');
+    ARTWORKS.forEach((a, i) => {
+      const li = document.createElement('li');
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      const t = document.createElement('a');
+      t.className = 'title';
+      t.href = a.url;
+      t.target = '_blank';
+      t.rel = 'noopener';
+      t.textContent = `${i + 1}. ${a.title}`;
+      const sub = document.createElement('div');
+      sub.className = 'sub';
+      sub.textContent = a.date || '';
+      meta.appendChild(t);
+      meta.appendChild(sub);
+      const v = document.createElement('a');
+      v.className = 'view';
+      v.href = a.url;
+      v.target = '_blank';
+      v.rel = 'noopener';
+      v.textContent = 'open';
+      li.appendChild(meta);
+      li.appendChild(v);
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
